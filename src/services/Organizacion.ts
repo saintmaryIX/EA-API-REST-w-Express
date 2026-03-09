@@ -13,6 +13,10 @@ const getOrganizacion = async (organizacionId: string): Promise<IOrganizacionMod
     return await Organizacion.findById(organizacionId);
 };
 
+const getOrganizacionConUsuarios = async (organizacionId: string): Promise<IOrganizacionModel | null> => {
+    return await Organizacion.findById(organizacionId).populate('usuarios');
+};
+
 const getAllOrganizaciones = async (): Promise<IOrganizacionModel[]> => {
     return await Organizacion.find();
 };
@@ -30,4 +34,4 @@ const deleteOrganizacion = async (organizacionId: string): Promise<IOrganizacion
     return await Organizacion.findByIdAndDelete(organizacionId);
 };
 
-export default { createOrganizacion, getOrganizacion, getAllOrganizaciones, updateOrganizacion, deleteOrganizacion };
+export default { createOrganizacion, getOrganizacion, getOrganizacionConUsuarios, getAllOrganizaciones, updateOrganizacion, deleteOrganizacion };
